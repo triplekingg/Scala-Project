@@ -5,9 +5,10 @@ import scala.util.control.Breaks._
 class UserService {
   val calculator = new Calculator;
   var importantExpenses = new util.HashMap[String,Double]()
+  var unimportantExpenses = new util.HashMap[String,Double]()
 
   def displayDetails(user: User):String ={
-    "Name: "+user.name+"\n"+"Income: "+user.monthlyIncome+"\n"+"Expense: "+user.monthlyExpense + "\n" + user.importantExpenses
+    "Name: "+user.name+"\n"+"Income: "+user.monthlyIncome+"\n"+"Expense: "+user.monthlyExpense + "\n" + user.importantExpenses+ "\n" + user.unimportantExpenses
   }
   def getUserDetails():User ={
     val sc = new Scanner(System.in);
@@ -21,7 +22,9 @@ class UserService {
     println(s"Percentage of fund left: $left%")
     val used = calculator.percentageUsed(income,expense)
     println(s"Percentage of fund used: $used%")
-    println("Enter the important expenses in the format shown below, hit enter to proceed after entering the values")
+
+
+    println("Enter the important expenses in the format shown below, type DONE to proceed after entering the values")
     println("<Expense name> <Expense>")
     var a = sc.nextLine()
     try{
@@ -36,10 +39,29 @@ class UserService {
       case e:InputMismatchException => println("Wrong Format")
     }
 
+    println("Enter the unimportant expenses in the format shown below, type DONE to proceed after entering the values")
+    println("<Expense name> <Expense>")
+    var b = sc.nextLine()
+    try{
+      while (b != "DONE") {
+        b = sc.nextLine()
+        calculator.parser(b, unimportantExpenses);
+      }
+      if (b != "DONE") calculator.parser(sc.nextLine(), unimportantExpenses);
+    }
+    catch {
+      case e:NumberFormatException => println("Skipped")
+      case e:InputMismatchException => println("Wrong Format")
+    }
+
+
+
+
+
 
 
     println("Enter the percentage that you want to cut down your expenses by");
     val percent = sc.nextDouble();
-    User(name,income,expense,percent,importantExpenses);
+    User(name,income,expense,percent,importantExpenses,unimportantExpenses);
   }
 }
