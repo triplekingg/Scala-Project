@@ -1,10 +1,6 @@
-class User(name:String, monthlyIncome:Double, monthlyExpense:Double, percentage:Double) {
+import java.util.Scanner
 
-
-  def displayDetails():String ={
-    "Name: "+name+"\n"+"Income: "+monthlyIncome+"\n"+"Expense: "+monthlyExpense
-  }
-
+case class User(name:String, monthlyIncome:Double, monthlyExpense:Double, percentage:Double) {
 }
 
 
