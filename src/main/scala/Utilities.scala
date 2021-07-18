@@ -20,8 +20,7 @@ class Utilities {
 
   }
 
-  def getImportantExpenses(hm: HashMap[String,Double] ):Unit = {
-    println("Enter the important expenses in the format shown below, type DONE and enter twice for confirmation to proceed after entering the values")
+  def getExpense(hm: HashMap[String,Double]): Unit = {
     println("<Expense name> <Expense>")
     var a = sc.nextLine()
     try{
@@ -38,22 +37,14 @@ class Utilities {
     }
   }
 
+  def getImportantExpenses(hm: HashMap[String,Double] ):Unit = {
+    println("Enter the important expenses in the format shown below, type DONE and enter twice for confirmation to proceed after entering the values")
+    getExpense(hm)
+  }
+
   def getUnimportantExpenses(hm: HashMap[String,Double] ):Unit = {
     println("Enter the unimportant expenses in the format shown below, type DONE and enter twice for confirmation to proceed after entering the values")
-    println("<Expense name> <Expense>")
-    var a = sc.nextLine()
-    try{
-      while (a != "DONE") {
-        parser(a, hm);
-        a = sc.nextLine()
-      }
-      a = sc.nextLine()
-      if (a != "DONE") parser(a, hm);
-    }
-    catch {
-      case e:NumberFormatException => println("Skipped")
-      case e:InputMismatchException => println("Wrong Format")
-    }
+    getExpense(hm)
   }
 
 }
