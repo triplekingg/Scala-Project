@@ -4,7 +4,9 @@ case class User(name:String,
                 monthlyExpense:Double,
                 percentage:Double,
                 importantExpenses:HashMap[String,Double],
-                unimportantExpenses:HashMap[String,Double]
+                unimportantExpenses:HashMap[String,Double],
+                revisedImportantExpenses:HashMap[String,Double],
+                revisedUnimportantExpenses:HashMap[String,Double]
                ) {
 }
 
