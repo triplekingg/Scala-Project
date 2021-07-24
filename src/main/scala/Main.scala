@@ -1,9 +1,9 @@
 import java.util.Scanner
 class Main {
   val userService = new UserService;
-  def run():String={
-    val user = userService.getUserDetails()
-    userService.displayDetails(user)
+  def run():Unit={
+      val user = userService.getUserDetails()
+      userService.displayDetails(user)
   }
 
 
