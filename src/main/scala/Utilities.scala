@@ -20,6 +20,15 @@ class Utilities {
 
   }
 
+  def displayHashmap(hm: HashMap[String,Double]):String = {
+    var display=""
+    hm.forEach((k, v) => {
+      display = display + (k + ": " + v + "\n")
+    })
+    display
+
+  }
+
   def getExpense(hm: HashMap[String,Double]): Unit = {
     println("<Expense name> <Expense>")
     var a = sc.nextLine()

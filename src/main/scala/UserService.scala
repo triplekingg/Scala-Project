@@ -1,6 +1,6 @@
 import java.io.{BufferedWriter, File, FileWriter}
 import java.util
-import java.util.Scanner
+import java.util.{HashMap, Scanner}
 
 
 class UserService {
@@ -12,21 +12,16 @@ class UserService {
   var suggestedUnimportantExpenses = new util.HashMap[String,Double]()
 
   def displayDetails(user: User):String ={
-    val result = "Name: "+user.name+"\n"+"Income: "+user.monthlyIncome+"\n"+"Expense: "+user.monthlyExpense + "\n"+"Important Expenses: " + user.importantExpenses + "\n"+"Suggested Important Expenses: " + user.revisedImportantExpenses + "\n"+ "Unimportant Expenses: "+user.unimportantExpenses + "\n" + "Suggested Unimportant Expenses: "+user.revisedUnimportantExpenses
-    result
+    "Name: "+user.name+"\n"+"Income: "+user.monthlyIncome+"\n"+"Expense: "+user.monthlyExpense + "\n"+"Important Expenses: \n" +
+      utilities.displayHashmap(user.importantExpenses) + "\n"+"Suggested Important Expenses: \n" +
+      utilities.displayHashmap(user.revisedImportantExpenses) + "\n"+ "Unimportant Expenses: \n"+utilities.displayHashmap(user.unimportantExpenses) +
+      "\n" + "Suggested Unimportant Expenses: \n"+utilities.displayHashmap(user.revisedUnimportantExpenses)
   }
-//  def writeFile(filename: String, s: String): Unit = {
-//    val file = new File(filename)
-//    val bw = new BufferedWriter(new FileWriter(file))
-//    bw.write(s)
-//    bw.close()
-//  }
+
   def getUserDetails():User ={
-//    val sc = new Scanner((new File("test")));
+
     val sc = new Scanner(System.in);
-//    while (sc.hasNextLine()){
-//
-//    }
+
     println("Enter your Full name");
     val name = sc.nextLine();
     println("Enter your monthly income");
