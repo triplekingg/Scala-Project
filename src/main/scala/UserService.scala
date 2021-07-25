@@ -10,12 +10,13 @@ class UserService {
   var unimportantExpenses = new util.HashMap[String,Double]()
   var suggestedImportantExpenses = new util.HashMap[String,Double]()
   var suggestedUnimportantExpenses = new util.HashMap[String,Double]()
+  var suggestedTotalExpenses:Double = 0
 
   def displayDetails(user: User):String ={
     "Name: "+user.name+"\n"+"Income: "+user.monthlyIncome+"\n"+"Expense: "+user.monthlyExpense + "\n"+"Important Expenses: \n" +
       utilities.displayHashmap(user.importantExpenses) + "\n"+"Suggested Important Expenses: \n" +
       utilities.displayHashmap(user.revisedImportantExpenses) + "\n"+ "Unimportant Expenses: \n"+utilities.displayHashmap(user.unimportantExpenses) +
-      "\n" + "Suggested Unimportant Expenses: \n"+utilities.displayHashmap(user.revisedUnimportantExpenses)
+      "\n" + "Suggested Unimportant Expenses: \n"+utilities.displayHashmap(user.revisedUnimportantExpenses) + s"\n Your new total expense will be amounted to $suggestedTotalExpenses"
   }
 
   def getUserDetails():User ={
@@ -43,6 +44,7 @@ class UserService {
     println("Enter the percentage that you want to cut down your expenses by");
     val percent = sc.nextDouble();
     calculator.revisedCharges(suggestedImportantExpenses,suggestedUnimportantExpenses,percent)
-    User(name,income,expense,percent,importantExpenses,unimportantExpenses,suggestedImportantExpenses,suggestedUnimportantExpenses);
+    suggestedTotalExpenses = calculator.totalExpenses(suggestedImportantExpenses) + calculator.totalExpenses(suggestedUnimportantExpenses)
+    User(name,income,expense,percent,importantExpenses,unimportantExpenses,suggestedImportantExpenses,suggestedUnimportantExpenses, suggestedTotalExpenses);
   }
 }
