@@ -1,3 +1,4 @@
 # Scala-Project
 
-This project is done without any contributors than myself
+This project has no contributors but myself. 
+The file Example.JPG can be referred to as a guide to how to use this program.
